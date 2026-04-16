@@ -31,8 +31,12 @@ def hitung_skor():
         skor_karakter = float(data.get('skor_karakter', 80)) 
 
         # 2. Logika Matematika Sains Data (Kalkulasi DTI)
+        # Asumsi: Nominal pinjaman dicicil selama 12 bulan
+        estimasi_cicilan_baru = nominal_pinjaman / 12
+        total_beban_bulanan = cicilan + estimasi_cicilan_baru
+
         if pendapatan > 0:
-            dti_ratio = (cicilan / pendapatan) * 100
+            dti_ratio = (total_beban_bulanan / pendapatan) * 100
         else:
             dti_ratio = 100 # Jika pendapatan 0, risiko maksimal
 
