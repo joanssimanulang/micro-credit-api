@@ -88,7 +88,8 @@ def hitung_skor():
             "Nominal Pinjaman": nominal_pinjaman,
             "DTI Ratio": dti_ratio,
             "Credit Score": total_score,
-            "Keputusan Akhir": keputusan
+            "Keputusan Akhir": keputusan,
+            "Skor Karakter": skor_karakter
         }
         
         # Kirim ke Baserow
