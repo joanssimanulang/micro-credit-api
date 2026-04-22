@@ -107,3 +107,6 @@ def hitung_skor():
 
 if __name__ == '__main__':
     app.run(debug=True)
+    
+
+# Update dari VS Code
