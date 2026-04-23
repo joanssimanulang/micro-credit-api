@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import requests
+from datetime import datetime
+import pytz # Untuk zona waktu Indonesia
 
 app = Flask(__name__)
 CORS(app) # Mengizinkan Appsmith mengakses API ini
@@ -29,6 +31,9 @@ def hitung_skor():
         
         # Tambahan: Karena di Bab 7 ada Skor Karakter, kita buat default 80 jika tidak diinput petugas
         skor_karakter = float(data.get('skor_karakter', 80)) 
+        
+        timezone = pytz.timezone('Asia/Jakarta')
+        waktu_sekarang = datetime.now(timezone).strftime("%Y-%m-%d %H:%M:%S")
 
         # 2. Logika Matematika Sains Data (Kalkulasi DTI)
         # Asumsi: Nominal pinjaman dicicil selama 12 bulan
@@ -89,7 +94,8 @@ def hitung_skor():
             "DTI Ratio": dti_ratio,
             "Credit Score": total_score,
             "Keputusan Akhir": keputusan,
-            "Skor Karakter": skor_karakter
+            "Skor Karakter": skor_karakter,
+            "Waktu Pengajuan": waktu_sekarang
         }
         
         # Kirim ke Baserow
